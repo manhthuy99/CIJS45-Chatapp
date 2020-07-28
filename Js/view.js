@@ -45,6 +45,10 @@ view.setActiveScreen = (screenName) => {
         view.setActiveScreen('loginScreen')
       })
     break;
+    case 'chatScreen' :
+      document.getElementById('app').innerHTML = components.chatScreen
+      document.getElementById('app').innerText=model.currentUser.displayName
+      break;
   }
 }
 

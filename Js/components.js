@@ -66,4 +66,6 @@ components.loginScreen = `
         </div>
     </div>
 `
-.components.chatScreen = ` <h1>Welcome to chatScreen </h1>`
+components.chatScreen = `
+<h1>Chat Screen </h1>
+`

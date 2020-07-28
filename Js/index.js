@@ -13,7 +13,5 @@ const init = () =>{
       console.log(firebase.app().name)
     console.log('window onloaded')
     view.setActiveScreen('registerScreen')
-    view.setActiveScreen('loginScreen')
-    view.setActiveScreen('chatScreen')
 }
 window.onload = init
