@@ -72,4 +72,3 @@ controller.login = (dataLogin) => {
       model.login(dataLogin)
   }
 }
-

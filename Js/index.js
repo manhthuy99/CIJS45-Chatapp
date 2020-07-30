@@ -13,5 +13,17 @@ const init = () =>{
       console.log(firebase.app().name)
     console.log('window onloaded')
     view.setActiveScreen('registerScreen')
+    firebase.auth().onAuthStateChanged((user) => {
+      if(user) {
+          model.currentUser = {
+            displayName: user.displayName,
+            email: user.email
+          }
+        view.setActiveScreen('chatScreen');
+      } else {
+        view.setActiveScreen('loginScreen')
+      }
+    });
 }
+
 window.onload = init
