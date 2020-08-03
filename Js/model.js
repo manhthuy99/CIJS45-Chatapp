@@ -41,3 +41,13 @@ model.login = async (dataLogin) => {
     console.log(err.message)
   }
 }
+model.addMessage = (data) => {
+  const dataToUpdate = {
+    messages: firebase.firestore.FieldValue.arrayUnion(data),
+  };
+  firebase
+    .firestore()
+    .collection("conversations")
+    .doc("BiVC8qmlTpXREE7mmBRX")
+    .update(dataToUpdate);
+};

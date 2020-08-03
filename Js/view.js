@@ -64,11 +64,7 @@ view.setActiveScreen = (screenName) => {
           view.addMessage(message)
           view.addMessage(botMsg)
           sendMessageForm.message.value = ''
-          const documentIdUpdate='BiVC8qmlTpXREE7mmBRX'
-                    const messageToAdd={
-                        messages: firebase.firestore.FieldValue.arrayUnion(message)
-                      }
-                      firebase.firestore().collection('conversations').doc(documentIdUpdate).update(messageToAdd)
+          model.addMessage(message)
         }
       })
   }
