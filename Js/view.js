@@ -46,25 +46,31 @@ view.setActiveScreen = (screenName) => {
       })
     break;
     case 'chatScreen' :
-      document.getElementById('app').innerHTML = components.chatScreen
-      const sendMessageForm = document.getElementById('send-message-form')
-      sendMessageForm.addEventListener('submit',(event)=>{
-        event.preventDefault()
-        const message = {
-          content : sendMessageForm.message.value,
-          owner : model.currentUser.email,
-        }
-        const botMsg = {
-          owner: 'Bot',
-          content: sendMessageForm.message.value + ' too',
-        }
-        if( message.content.trim() !== ''){
+      document.getElementById('app')
+      .innerHTML = components.chatScreen
+      const sendMessageForm = 
+      document.getElementById('send-message-form')
+      sendMessageForm.addEventListener('submit', (e) => {
+        e.preventDefault()
+        if(sendMessageForm.message.value.trim() !== '') {
+          const message = {
+            content: sendMessageForm.message.value,
+            owner: model.currentUser.email
+          }
+          const botMsg = {
+            content: sendMessageForm.message.value + ' too',
+            owner: 'Bot'
+          }
           view.addMessage(message)
           view.addMessage(botMsg)
-      }
-          sendMessageForm.message.value=''
+          sendMessageForm.message.value = ''
+          const documentIdUpdate='BiVC8qmlTpXREE7mmBRX'
+                    const messageToAdd={
+                        messages: firebase.firestore.FieldValue.arrayUnion(message)
+                      }
+                      firebase.firestore().collection('conversations').doc(documentIdUpdate).update(messageToAdd)
+        }
       })
-      break;
   }
 }
 view.addMessage = (message)=>{

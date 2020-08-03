@@ -24,7 +24,7 @@ components.registerScreen = `
                     <div class="error" id="email-error"></div>
                 </div>
                 <div class="input-wrapper">
-                    <input type="text" placeholder="Password..." name="password">
+                    <input type="password" placeholder="Password..." name="password">
                     <div class="error" id="password-error"></div>
                 </div>
                 <div class="input-wrapper">
