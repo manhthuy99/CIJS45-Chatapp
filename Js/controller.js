@@ -1,4 +1,3 @@
-
 const controller = {}
 controller.register = (data) => {
   if (data.firstName.trim() === '' ) {
@@ -44,13 +43,15 @@ controller.register = (data) => {
     document.getElementById('confirm-password-error')
     .innerText = ''
   }
-  if(data.firstName != '' && 
-    data.lastName != '' && 
-    data.email != '' && 
-    data.password != '' &&
-    data.confirmPassword !='' ){
-        model.register(data)
-    }
+  if( data.firstName !== '' &&
+      data.lastName !== '' &&
+      data.email !== '' &&
+      data.password !== '' &&
+      data.confirmPassword !== '' &&
+      data.password === data.confirmPassword
+  ) {
+    model.register(data)
+  }
 }
 
 controller.login = (dataLogin) => {
@@ -68,7 +69,9 @@ controller.login = (dataLogin) => {
     document.getElementById('password-error')
     .innerText = ''
   }
-  if(dataLogin.email !=''&& dataLogin.password!=''){
-      model.login(dataLogin)
-  }
+  if(dataLogin.email !== '' &&
+    dataLogin.password !== ''
+  ) {
+    model.login(dataLogin)
+  } 
 }

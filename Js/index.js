@@ -69,13 +69,13 @@ getDataFromDoc =(doc)=>{
   data.id =doc.id
   return data
 }
-// getDataFromDocs=(docs)=>{
-//    return listData = docs.map(item=>getDataFromDoc(item))
-//   // for (let index = 0; index < docs.length; index++) {
-//   //   const element = getDataFromDoc(docs[index]);
-//   //   listData.push(element)
+getDataFromDocs=(docs)=>{
+   return listData = docs.map(item=>getDataFromDoc(item))
+  // for (let index = 0; index < docs.length; index++) {
+  //   const element = getDataFromDoc(docs[index]);
+  //   listData.push(element)
     
-//   // }
-//   //return listData
+  // }
+  //return listData
 
-// }
+}

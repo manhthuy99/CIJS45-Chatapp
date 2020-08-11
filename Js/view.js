@@ -1,4 +1,3 @@
-
 const view = {}
 view.setActiveScreen = (screenName) => {
   switch (screenName) {
@@ -55,41 +54,54 @@ view.setActiveScreen = (screenName) => {
         if(sendMessageForm.message.value.trim() !== '') {
           const message = {
             content: sendMessageForm.message.value,
-            owner: model.currentUser.email
+            owner: model.currentUser.email,
+            createdAt: (new Date()).toISOString()
           }
-          const botMsg = {
-            content: sendMessageForm.message.value + ' too',
-            owner: 'Bot'
-          }
-          view.addMessage(message)
-          view.addMessage(botMsg)
-          sendMessageForm.message.value = ''
           model.addMessage(message)
+          sendMessageForm.message.value = ''
         }
       })
+      model.loadConversations()
+      model.listenConversationsChange()
   }
 }
-view.addMessage = (message)=>{
+
+view.addMessage = (message) => {
   const messageWrapper = document.createElement('div')
   messageWrapper.classList.add('message-container')
-  if(message.owner==model.currentUser.email){
+  if(message.owner === model.currentUser.email) {
     messageWrapper.classList.add('mine')
-    messageWrapper.innerHTML= `
+    messageWrapper.innerHTML = `
       <div class="content">
-      ${message.content}
-      </div>  `
-  }
-  else{
-    console.log('b')
+        ${message.content}
+      </div>
+    `
+  } else {
     messageWrapper.classList.add('their')
-    messageWrapper.innerHTML=`
-    <div class = "owner">
-    ${message.owner}
+    messageWrapper.innerHTML = `
+    <div class="owner">
+      ${message.owner}
     </div>
-    <div class= "content">
-    ${message.content}
+    <div class="content">
+      ${message.content}
     </div>
     `
   }
-  document.querySelector('.list-message').appendChild(messageWrapper)
+  document.querySelector('.list-messages')
+  .appendChild(messageWrapper)
+}
+view.showCurrrentConversation = () => {
+  // doi ten cuoc tro chuyen
+  document
+  .getElementsByClassName('conversation-header')[0]
+  .innerText = model.currentConversation.title
+  // in cac tin nhan len man hinh
+  for(message of model.currentConversation.messages) {
+    view.addMessage(message)
+  }
+  view.scrollToEndElement()
+}
+view.scrollToEndElement = () => {
+  const element = document.querySelector('.list-messages')
+  element.scrollTop = element.scrollHeight
 }
